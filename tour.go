@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"time"
 )
 
-func Sqrt(x float64) (root float64) {
-	for root = 1; math.Abs(root*root-x) > 0.001; {
-		root -= (root*root - x) / (2 * root)
-	}
-	return
-}
-
 func main() {
-	fmt.Println(Sqrt(2))
+	switch t := time.Now(); {
+	case t.Hour() < 12:
+		fmt.Println("Good morning!")
+	case t.Hour() < 17:
+		fmt.Println("Good afternoon!")
+	default:
+		fmt.Println("Good evening!")
+	}
 }
