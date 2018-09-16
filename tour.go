@@ -3,9 +3,18 @@
 
 package main
 
-import "fmt"
+import "golang.org/x/tour/pic"
+
+func Pic(dx, dy int) (pic [][]uint8) {
+	for i := 0; i < dy; i++ {
+		pic = append(pic, make([]uint8, dx, dx))
+		for j := 0; j < dx; j++ {
+			pic[i][j] = uint8(i * j)
+		}
+	}
+	return
+}
 
 func main() {
-	var s []int
-	fmt.Println(s, len(s), cap(s), s == nil)
+	pic.Show(Pic)
 }
