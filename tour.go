@@ -1,20 +1,25 @@
 //gotour
-//http://127.0.0.1:3999/moretypes/13
+//http://127.0.0.1:3999/methods/1
 
 package main
 
-import "golang.org/x/tour/pic"
+import "fmt"
 
-func Pic(dx, dy int) (pic [][]uint8) {
-	for i := 0; i < dy; i++ {
-		pic = append(pic, make([]uint8, dx, dx))
-		for j := 0; j < dx; j++ {
-			pic[i][j] = uint8(i * j)
-		}
+// fibonacci is a function that returns
+// a function that returns an int.
+func fibonacci() func() int {
+	prev, curr := 0, 1
+	return func() int {
+		defer func() {
+			prev, curr = curr, curr+prev
+		}()
+		return prev
 	}
-	return
 }
 
 func main() {
-	pic.Show(Pic)
+	f := fibonacci()
+	for i := 0; i < 10; i++ {
+		fmt.Println(f())
+	}
 }
